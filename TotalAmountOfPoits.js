@@ -17,6 +17,7 @@
 
 // SOLUTION: 
 
+// first solution:
 function points(games) {
   let initVal = 0
 
@@ -34,3 +35,27 @@ function points(games) {
   }).reduce((accumulator, currentValue) => accumulator + currentValue,
   initVal)
 }
+
+// second solution
+function points(games) {
+  let initVal = 0
+
+  return games.map(match => {
+    if (parseInt(match[0]) > parseInt(match[2])) {
+      return 3
+    } else if (parseInt(match[0]) < parseInt(match[2])) {
+      return 0
+    } else {
+      return 1
+    }
+  }).reduce((acc, currVal) => acc + currVal, initVal)
+}
+
+// third solution
+const points = games => games.reduce((output,current) => {
+    return output += current[0] > current[2] 
+      ? 3 
+      : current[0] === current[2] 
+        ? 1 
+        : 0;
+  }, 0)
